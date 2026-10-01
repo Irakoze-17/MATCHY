@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Matchy — Log in or Sign up</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>.signup-step[hidden], #loginView[hidden], #signupView[hidden] { display: none !important; }</style>
+</head>
+<body class="auth-page">
+<main class="auth-shell auth-shell-single">
+  <section class="auth-brand-panel">
+    <div class="auth-brand"><img src="assets/matchy-logo.png" alt="Matchy logo"><span>Match<span>y</span></span></div>
+    <div class="auth-copy">
+      <span class="pill lime">Study smarter together</span>
+      <h1>Find your people.<br>Learn your way.</h1>
+      <p>Matchy connects you with students who share your subjects, exam goals and university journey.</p>
+      <div class="auth-points">
+        <div><b>✦</b><span>Match with students around your academic goals</span></div>
+        <div><b>◈</b><span>Keep your academic profile in one place</span></div>
+        <div><b>◎</b><span>Study together with your community</span></div>
+      </div>
+    </div>
+    <div class="auth-orbit orbit-one"></div><div class="auth-orbit orbit-two"></div>
+  </section>
+
+  <section class="auth-form-panel">
+    <div class="auth-card auth-card-wide">
+      <div class="auth-mobile-brand"><img src="assets/matchy-logo.png" alt="Matchy logo"><strong>Match<span>y</span></strong></div>
+      <div id="authMessage" class="auth-message" aria-live="polite"></div>
+
+      <!-- LOGIN: first screen -->
+      <div id="loginView">
+        <div class="auth-heading">
+          <span class="eyebrow">Welcome to Matchy</span>
+          <h2>Log in to continue.</h2>
+          <p class="muted">Continue with an account or enter your Matchy credentials.</p>
+        </div>
+
+        <div class="social-login-grid">
+          <button class="social-btn" id="googleLogin" type="button"><span class="social-logo google-logo">G</span> Continue with Google</button>
+          <button class="social-btn" id="appleLogin" type="button"><span class="social-logo apple-logo">●</span> Continue with Apple</button>
+        </div>
+        <div class="auth-divider"><span>or</span></div>
+
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label class="label" for="loginIdentifier">Email or username</label>
+            <input class="input" id="loginIdentifier" type="text" autocomplete="username" placeholder="you@example.com or @username" required>
+          </div>
+          <div class="form-group">
+            <label class="label" for="loginPassword">Password</label>
+            <div class="password-wrap"><input class="input" id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password" required><button class="password-toggle" type="button" data-password="loginPassword">Show</button></div>
+          </div>
+          <div class="auth-forgot"><button type="button" id="forgotPassword">Forgot password?</button></div>
+          <button class="btn btn-primary auth-submit" type="submit">Log in to Matchy</button>
+        </form>
+        <div class="auth-create-callout">
+          <div><strong>New to Matchy?</strong><span>Create your academic profile and start matching.</span></div>
+          <button class="btn btn-lime" type="button" id="startSignup">Create an account</button>
+        </div>
+      </div>
+
+      <!-- SIGNUP FLOW -->
+      <div id="signupView" hidden>
+        <div class="signup-progress">
+          <div><span id="signupStepLabel">Step 1 of 4</span><span id="signupStepName">Create account</span></div>
+          <div class="signup-bar"><i id="signupBar"></i></div>
+        </div>
+
+        <!-- STEP 1 -->
+        <section class="signup-step" data-step="1">
+          <div class="auth-heading"><span class="eyebrow">Create your account</span><h2>Start with your login details.</h2><p class="muted">Use the email and password you will use to access Matchy.</p></div>
+          <div class="form-group"><label class="label" for="signupEmail">Email</label><input class="input" id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+          <div class="form-group"><label class="label" for="signupPassword">Password</label><div class="password-wrap"><input class="input" id="signupPassword" type="password" autocomplete="new-password" placeholder="At least 8 characters"><button class="password-toggle" type="button" data-password="signupPassword">Show</button></div><div class="field-note">Use at least 8 characters.</div></div>
+          <div class="form-group"><label class="label" for="signupPassword2">Confirm password</label><div class="password-wrap"><input class="input" id="signupPassword2" type="password" autocomplete="new-password" placeholder="Enter your password again"><button class="password-toggle" type="button" data-password="signupPassword2">Show</button></div></div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="signup-step" data-step="2" hidden>
+          <div class="auth-heading"><span class="eyebrow">Set up your account</span><h2>Make your Matchy profile yours.</h2><p class="muted">Choose a unique username, add your birthday and pick a profile image.</p></div>
+          <div class="grid grid-2 auth-two">
+            <div class="form-group"><label class="label" for="profileName">Full name</label><input class="input" id="profileName" type="text" placeholder="Your name"></div>
+            <div class="form-group"><label class="label" for="profileUsername">Unique username</label><input class="input" id="profileUsername" type="text" placeholder="@yourusername"><div class="field-note" id="usernameNote">3–20 letters, numbers, . or _</div></div>
+          </div>
+          <div class="form-group"><label class="label" for="profileDob">Date of birth</label><input class="input" id="profileDob" type="date"></div>
+          <div class="form-group">
+            <label class="label">Profile image</label>
+            <div class="avatar-picker">
+              <div class="avatar-options" id="avatarOptions">
+                <button type="button" class="avatar-choice selected" data-avatar="🦊">🦊</button><button type="button" class="avatar-choice" data-avatar="🐼">🐼</button><button type="button" class="avatar-choice" data-avatar="🦁">🦁</button><button type="button" class="avatar-choice" data-avatar="🐧">🐧</button><button type="button" class="avatar-choice" data-avatar="🐢">🐢</button><button type="button" class="avatar-choice" data-avatar="🦄">🦄</button>
+              </div>
+              <div class="photo-actions"><button type="button" class="btn btn-ghost" id="uploadPhoto">Upload from laptop</button><input id="photoInput" type="file" accept="image/*" hidden><img id="photoPreview" class="photo-preview" alt="Profile preview"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="signup-step" data-step="3" hidden>
+          <div class="auth-heading"><span class="eyebrow">Academic profile</span><h2>Tell Matchy what you study.</h2><p class="muted">Choose an examination board, then add each subject with your current and target grade.</p></div>
+          <div class="form-group"><label class="label" for="examBoard">Examination board</label><select class="select" id="examBoard"><option value="">Choose your exam board</option><option>Cambridge International A-Level</option><option>Cambridge International AS-Level</option><option>Pearson Edexcel</option><option>AQA</option><option>Oxford AQA</option><option>International Baccalaureate</option><option>Advanced Placement (AP)</option><option>GCSE / IGCSE</option><option>Other</option></select></div>
+          <div class="academic-header"><span>Subject</span><span>Current grade</span><span>Target grade</span><span></span></div>
+          <div id="subjectRows" class="subject-rows"></div>
+          <button class="add-row-btn" id="addSubject" type="button">+ Add another subject</button>
+          <div class="academic-tip">Example: <strong>A-level · Mathematics</strong> — Current grade <strong>A</strong> — Target grade <strong>A*</strong>.</div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="signup-step" data-step="4" hidden>
+          <div class="auth-heading"><span class="eyebrow">University application</span><h2>Add your next step.</h2><p class="muted">This helps Matchy connect you with students on similar university paths. You can leave it blank and add it later.</p></div>
+          <div class="form-group"><label class="label">Where are you applying?</label><div class="country-chips" id="countryChips"><button type="button" class="country-chip" data-country="US">US</button><button type="button" class="country-chip" data-country="UK">UK</button><button type="button" class="country-chip" data-country="Canada">Canada</button></div></div>
+          <div class="grid grid-2 auth-two">
+            <div class="form-group"><label class="label" for="uniField">Intended field</label><input class="input" id="uniField" type="text" placeholder="Economics, Business, Computer Science…"></div>
+            <div class="form-group"><label class="label" for="uniName">University</label><input class="input" id="uniName" type="text" placeholder="e.g. University of Bristol"></div>
+          </div>
+          <div class="form-group"><label class="label" for="uniStatus">Application status</label><select class="select" id="uniStatus"><option value="">Choose a status</option><option>Planning to apply</option><option>Application started</option><option>Applied</option><option>Interview / assessment</option><option>Accepted</option><option>Waitlisted</option><option>Declined</option></select></div>
+          <div class="form-group"><label class="label" for="uniOther">Additional university applications <span class="optional">(optional)</span></label><textarea class="textarea" id="uniOther" placeholder="Add other universities, courses or statuses. For example: University of Bristol — Economics; UPenn — Accepted."></textarea></div>
+          <div class="profile-summary" id="profileSummary"></div>
+        </section>
+
+        <div class="signup-actions"><button class="btn btn-ghost" type="button" id="signupBack">← Back</button><button class="btn btn-lime" type="button" id="signupNext">Continue</button></div>
+        <p class="auth-note">Front-end only: your demo profile is stored locally in this browser. Google and Apple sign-in require an authentication backend to become real.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<script src="app.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const loginView=$('loginView'), signupView=$('signupView'), message=$('authMessage');
+  let signupStep=1, selectedAvatar='🦊', uploadedImage='';
+  const signupData={subjects:[],countries:[]};
+
+  const setMessage=(text,type='error')=>{message.textContent=text;message.className='auth-message '+type;};
+  const clearMessage=()=>{message.textContent='';message.className='auth-message';};
+  const account=()=>JSON.parse(localStorage.getItem('matchyAccount')||'null');
+  const goMatch=()=>{localStorage.setItem('matchyAuth','true');location.href='match.html';};
+
+  document.querySelectorAll('.password-toggle').forEach(btn=>btn.addEventListener('click',()=>{const input=$(btn.dataset.password);const show=input.type==='password';input.type=show?'text':'password';btn.textContent=show?'Hide':'Show';}));
+
+  $('startSignup').addEventListener('click',()=>{
+    loginView.hidden=true;
+    signupView.hidden=false;
+    signupStep=1;
+    renderStep();
+    clearMessage();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  $('loginForm').onsubmit=e=>{
+    e.preventDefault(); clearMessage();
+    const identifier=$('loginIdentifier').value.trim().toLowerCase(); const password=$('loginPassword').value; const a=account();
+    if(!a){setMessage('No Matchy account was found in this browser. Create an account to get started.');return;}
+    const username=(a.profile?.username||'').replace(/^@/,'').toLowerCase();
+    if((a.email||'').toLowerCase()!==identifier && username!==identifier.replace(/^@/,'')){setMessage('We could not find an account with that email or username.');return;}
+    if(a.password!==password){setMessage('That password is incorrect.');return;}
+    localStorage.setItem('matchyProfile',JSON.stringify(a.profile||{})); localStorage.setItem('matchyAuth','true'); setMessage('Welcome back! Taking you to Match…','good'); setTimeout(goMatch,350);
+  };
+
+  $('forgotPassword').onclick=()=>setMessage('Password reset is not connected in the frontend-only version yet.');
+  ['googleLogin','appleLogin'].forEach(id=>$(id).onclick=()=>setMessage(id==='googleLogin'?'Google sign-in is ready for the UI, but needs OAuth/backend connection to become real.':'Apple sign-in is ready for the UI, but needs OAuth/backend connection to become real.'));
+
+  function renderStep(){
+    document.querySelectorAll('.signup-step').forEach(s=>s.hidden=Number(s.dataset.step)!==signupStep);
+    $('signupStepLabel').textContent=`Step ${signupStep} of 4`;
+    $('signupStepName').textContent=['','Create account','Your profile','Academic profile','University application'][signupStep];
+    $('signupBar').style.width=(signupStep/4*100)+'%';
+    $('signupBack').disabled=false;
+    $('signupBack').textContent=signupStep===1?'← Back to login':'← Back';
+    $('signupNext').textContent=signupStep===4?'Create account':'Next';
+    if(signupStep===4) buildSummary();
+  }
+
+  function validDOB(d){if(!d)return false;const dob=new Date(d+'T00:00:00');const now=new Date();let age=now.getFullYear()-dob.getFullYear();const md=now.getMonth()-dob.getMonth();if(md<0||(md===0&&now.getDate()<dob.getDate()))age--;return age>=13&&age<=100;}
+  function validateStep(){
+    clearMessage();
+    if(signupStep===1){const email=$('signupEmail').value.trim().toLowerCase(),pw=$('signupPassword').value,pw2=$('signupPassword2').value;if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){setMessage('Enter a valid email address.');return false}if(account()?.email===email){setMessage('An account with this email already exists. Try logging in.');return false}if(pw.length<8){setMessage('Your password must be at least 8 characters.');return false}if(pw!==pw2){setMessage('Your passwords do not match.');return false}}
+    if(signupStep===2){const name=$('profileName').value.trim(),u=$('profileUsername').value.trim().replace(/^@/,'').toLowerCase();if(!name){setMessage('Add your name.');return false}if(!/^[a-z0-9_.]{3,20}$/.test(u)){setMessage('Username must be 3–20 characters using letters, numbers, . or _.');return false}const existing=account();if(existing?.profile?.username?.replace(/^@/,'').toLowerCase()===u){setMessage('That username is already in use in this browser. Choose another.');return false}if(!validDOB($('profileDob').value)){setMessage('Enter a valid date of birth. You must be at least 13.');return false}}
+    if(signupStep===3){if(!$('examBoard').value){setMessage('Choose your examination board.');return false}if(signupData.subjects.length===0){setMessage('Add at least one subject.');return false}if(signupData.subjects.some(s=>!s.subject||!s.current||!s.target)){setMessage('Complete the subject, current grade and target grade for every subject.');return false}}
+    return true;
+  }
+
+  $('signupNext').addEventListener('click',(event)=>{
+    event.preventDefault();
+    clearMessage();
+    if(!validateStep()) return;
+    if(signupStep<4){
+      signupStep += 1;
+      renderStep();
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      finishSignup();
+    }
+  });
+
+  $('signupBack').addEventListener('click',(event)=>{
+    event.preventDefault();
+    clearMessage();
+    if(signupStep>1){
+      signupStep -= 1;
+      renderStep();
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      // Step 1 goes back to the initial login screen.
+      signupView.hidden=true;
+      loginView.hidden=false;
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+  });
+
+  function subjectRow(data={subject:'',current:'',target:''}){const row=document.createElement('div');row.className='subject-row';row.innerHTML=`<input class="input subject-name" placeholder="Mathematics" value="${esc(data.subject)}"><input class="input subject-current" placeholder="A" value="${esc(data.current)}"><input class="input subject-target" placeholder="A*" value="${esc(data.target)}"><button type="button" class="remove-row" aria-label="Remove subject">×</button>`;row.querySelector('.remove-row').onclick=()=>{row.remove();syncSubjects()};row.querySelectorAll('input').forEach(i=>i.addEventListener('input',syncSubjects));$('subjectRows').appendChild(row);syncSubjects();}
+  function syncSubjects(){signupData.subjects=[...document.querySelectorAll('.subject-row')].map(r=>({subject:r.querySelector('.subject-name').value.trim(),current:r.querySelector('.subject-current').value.trim(),target:r.querySelector('.subject-target').value.trim()}));}
+  $('addSubject').onclick=()=>subjectRow(); subjectRow();
+
+  document.querySelectorAll('.avatar-choice').forEach(btn=>btn.onclick=()=>{selectedAvatar=btn.dataset.avatar;uploadedImage='';$('photoPreview').style.display='none';document.querySelectorAll('.avatar-choice').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');});
+  $('uploadPhoto').onclick=()=>$('photoInput').click();
+  $('photoInput').onchange=e=>{const file=e.target.files?.[0];if(!file)return;const r=new FileReader();r.onload=()=>{uploadedImage=r.result;selectedAvatar='';$('photoPreview').src=uploadedImage;$('photoPreview').style.display='block';document.querySelectorAll('.avatar-choice').forEach(x=>x.classList.remove('selected'));};r.readAsDataURL(file);};
+
+  document.querySelectorAll('.country-chip').forEach(btn=>btn.onclick=()=>{btn.classList.toggle('selected');signupData.countries=[...document.querySelectorAll('.country-chip.selected')].map(x=>x.dataset.country);});
+
+  function buildSummary(){syncSubjects();const subjectText=signupData.subjects.map(s=>`${s.subject} — ${s.current} → ${s.target}`).join(' · ');const countries=signupData.countries.length?signupData.countries.join(', '):'Not specified';$('profileSummary').innerHTML=`<div class="summary-title">Academic Profile</div><div><strong>Exam:</strong> ${esc($('examBoard').value||'Not specified')}</div><div><strong>Subjects:</strong> ${esc(subjectText||'None added')}</div><div><strong>University:</strong> ${esc($('uniField').value||'Not specified')} · ${esc($('uniName').value||'Not specified')} · ${esc($('uniStatus').value||'No status')} · ${esc(countries)}</div>`;}
+  ['uniField','uniName','uniStatus','uniOther','examBoard'].forEach(id=>$(id).addEventListener('input',()=>{if(signupStep===4)buildSummary()}));
+  document.querySelectorAll('.country-chip').forEach(b=>b.addEventListener('click',()=>{if(signupStep===4)buildSummary()}));
+
+  function finishSignup(){
+    syncSubjects(); const email=$('signupEmail').value.trim().toLowerCase(); const username='@'+$('profileUsername').value.trim().replace(/^@/,'').toLowerCase();
+    const profile={name:$('profileName').value.trim(),username,avatar:selectedAvatar||'🦊',photo:uploadedImage||'',dob:$('profileDob').value,academicProfile:{examBoard:$('examBoard').value,subjects:signupData.subjects},universityApplication:{countries:signupData.countries,field:$('uniField').value.trim(),university:$('uniName').value.trim(),status:$('uniStatus').value,other:$('uniOther').value.trim()}};
+    const a={email,password:$('signupPassword').value,profile}; localStorage.setItem('matchyAccount',JSON.stringify(a));localStorage.setItem('matchyProfile',JSON.stringify(profile));localStorage.setItem('matchyAuth','true');setMessage('Your Matchy account is ready! Taking you to Match…','good');setTimeout(goMatch,500);
+  }
+  function esc(s){return String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+  $('profileDob').max=new Date().toISOString().split('T')[0]; renderStep();
+})();
+</script>
+</body>
+</html>
